@@ -1,0 +1,20 @@
+id = "dev.minung.space-tab-count"
+name = "Space Tab Count"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "Expose workspace tab counts as Space sidebar metadata."
+platforms = ["linux", "macos", "windows"]
+
+[[actions]]
+id = "sync"
+title = "Sync all Space tab counts"
+contexts = ["workspace"]
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "tab.created"
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "tab.closed"
+command = ["node", "src/sync.mjs"]
