@@ -1,0 +1,36 @@
+id = "dev.minung.space-stats"
+name = "Space Stats"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "Expose workspace tab, pane, and agent counts as Space sidebar metadata."
+platforms = ["linux", "macos", "windows"]
+
+[[actions]]
+id = "sync"
+title = "Sync all Space stats"
+contexts = ["workspace"]
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "pane.agent_detected"
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "pane.closed"
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "pane.created"
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "pane.exited"
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "pane.moved"
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "tab.closed"
+command = ["node", "src/sync.mjs"]
