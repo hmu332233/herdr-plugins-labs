@@ -5,6 +5,8 @@
 Expose Herdr's server-owned workspace `tab_count` value as the `$tab_count`
 custom token for expanded Space sidebar rows.
 
+![Space Tab Count sidebar example](./assets/example.png)
+
 ## Requirements
 
 - Herdr 0.7.4 or newer

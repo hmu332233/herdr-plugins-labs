@@ -7,6 +7,8 @@
 
 토큰은 `3t(5p) · 2 agents` 형식으로 표시됩니다.
 
+![Space Stats 사이드바 예시](./assets/example.png)
+
 ## 요구 사항
 
 - Herdr 0.7.4 이상

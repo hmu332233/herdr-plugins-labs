@@ -5,6 +5,8 @@
 Herdr 서버가 관리하는 workspace의 `tab_count` 값을 확장된 Space 사이드바에서
 사용할 수 있는 `$tab_count` 커스텀 토큰으로 제공합니다.
 
+![Space Tab Count 사이드바 예시](./assets/example.png)
+
 ## 요구 사항
 
 - Herdr 0.7.4 이상

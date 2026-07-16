@@ -7,6 +7,8 @@ Expose each Herdr workspace's tab, pane, and detected-agent counts as one
 
 The token is formatted as `3t(5p) · 2 agents`.
 
+![Space Stats sidebar example](./assets/example.png)
+
 ## Requirements
 
 - Herdr 0.7.4 or newer
