@@ -1,15 +1,16 @@
 # herdr-plugins-labs
 
-Experimental plugins for [Herdr](https://herdr.dev/).
+Experimental plugins for [Herdr](https://herdr.dev/). Plugins are incubated
+here, and the ones that prove useful graduate to their own repositories.
 
-## Development
+## Table of Contents
 
-This repository uses pnpm 11.5.1 and Node.js 20.17 or newer. Install the
-workspace with `pnpm install`, then run every plugin's test suite with:
-
-```sh
-pnpm test
-```
+- [Plugins](#plugins)
+  - [Quick Agent](#quick-agent)
+  - [Space Tab Count](#space-tab-count)
+  - [Space Stats](#space-stats)
+- [Graduated](#graduated)
+  - [Symlink Worktree](#symlink-worktree)
 
 ## Plugins
 
@@ -31,3 +32,14 @@ Exposes tab, pane, and detected-agent counts as the `$space_stats` Space sidebar
 token.
 
 [![Space Stats sidebar example](./space-stats/assets/example.png)](./space-stats)
+
+## Graduated
+
+Plugins that started here and now live in their own repositories.
+
+### [Symlink Worktree](https://github.com/hmu332233/herdr-symlink-worktree)
+
+Shares selected gitignored files and directories (`.env`, build caches, etc.)
+from your main Git checkout with every new herdr worktree via symlinks.
+
+[![Symlink Worktree terminal example](https://raw.githubusercontent.com/hmu332233/herdr-symlink-worktree/main/docs/assets/symlink-worktree-overview.png)](https://github.com/hmu332233/herdr-symlink-worktree)
