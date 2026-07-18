@@ -1,0 +1,20 @@
+id = "dev.minung.agent-launcher"
+name = "Agent Launcher"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "Launch Codex or Claude beside the launch origin pane."
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "open"
+title = "Open Agent Launcher"
+contexts = ["workspace"]
+command = ["node", "src/open.mjs"]
+
+[[panes]]
+id = "launcher"
+title = "Agent Launcher"
+placement = "popup"
+width = 44
+height = 10
+command = ["node", "src/launcher.mjs"]

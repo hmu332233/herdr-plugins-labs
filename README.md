@@ -4,6 +4,10 @@ Experimental plugins for [Herdr](https://herdr.dev/).
 
 ## Plugins
 
+### [Agent Launcher](./agent-launcher)
+
+Opens a compact chooser for launching Codex or Claude beside the launch origin pane.
+
 ### [Space Tab Count](./space-tab-count)
 
 Exposes each workspace's tab count as the `$tab_count` Space sidebar token.
