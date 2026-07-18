@@ -1,0 +1,11 @@
+{
+  "name": "herdr-plugins-labs",
+  "private": true,
+  "packageManager": "pnpm@11.5.1",
+  "engines": {
+    "node": ">=20.17.0"
+  },
+  "scripts": {
+    "test": "pnpm --recursive test"
+  }
+}
