@@ -1,19 +1,19 @@
 import { spawnSync } from "node:child_process";
 
 const herdr = process.env.HERDR_BIN_PATH || "herdr";
-const plugin = process.env.HERDR_PLUGIN_ID || "dev.minung.agent-launcher";
+const plugin = process.env.HERDR_PLUGIN_ID || "dev.minung.quick-agent";
 const origin = process.env.HERDR_PANE_ID;
 
 if (!origin) {
-  console.error("Agent Launcher: no launch origin pane was provided.");
+  console.error("Quick Agent: no launch origin pane was provided.");
   process.exitCode = 1;
 } else {
   const result = spawnSync(herdr, [
     "plugin", "pane", "open",
     "--plugin", plugin,
-    "--entrypoint", "launcher",
+    "--entrypoint", "quick-agent",
     "--placement", "popup",
-    "--env", `AGENT_LAUNCHER_ORIGIN_PANE_ID=${origin}`,
+    "--env", `QUICK_AGENT_ORIGIN_PANE_ID=${origin}`,
     "--focus",
   ], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
 

@@ -1,0 +1,18 @@
+{
+  "name": "quick-agent",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.17.0"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@inquirer/select": "^4.4.2"
+  },
+  "devDependencies": {
+    "@inquirer/testing": "^3.3.9"
+  }
+}

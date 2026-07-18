@@ -1,19 +1,19 @@
-id = "dev.minung.agent-launcher"
-name = "Agent Launcher"
-version = "0.1.0"
+id = "dev.minung.quick-agent"
+name = "Quick Agent"
+version = "0.2.0"
 min_herdr_version = "0.7.4"
 description = "Launch Codex or Claude beside the launch origin pane."
 platforms = ["linux", "macos"]
 
 [[actions]]
 id = "open"
-title = "Open Agent Launcher"
+title = "Open Quick Agent"
 contexts = ["workspace"]
 command = ["node", "src/open.mjs"]
 
 [[panes]]
-id = "launcher"
-title = "Agent Launcher"
+id = "quick-agent"
+title = "Quick Agent"
 placement = "popup"
 width = 44
 height = 10

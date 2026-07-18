@@ -2,11 +2,22 @@
 
 Experimental plugins for [Herdr](https://herdr.dev/).
 
+## Development
+
+This repository uses pnpm 11.5.1 and Node.js 20.17 or newer. Install the
+workspace with `pnpm install`, then run every plugin's test suite with:
+
+```sh
+pnpm test
+```
+
 ## Plugins
 
-### [Agent Launcher](./agent-launcher)
+### [Quick Agent](./quick-agent)
 
-Opens a compact chooser for launching Codex or Claude beside the launch origin pane.
+Choose Codex or Claude and a split direction from a keyboard-friendly popup, then launch it beside your current pane.
+
+[![Quick Agent popup example](./quick-agent/assets/example.png)](./quick-agent)
 
 ### [Space Tab Count](./space-tab-count)
 
