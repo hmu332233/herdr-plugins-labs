@@ -6,6 +6,7 @@ here, and the ones that prove useful graduate to their own repositories.
 ## Table of Contents
 
 - [Plugins](#plugins)
+  - [Agent Restart](#agent-restart)
   - [Quick Agent](#quick-agent)
   - [Space Tab Count](#space-tab-count)
   - [Space Stats](#space-stats)
@@ -13,6 +14,12 @@ here, and the ones that prove useful graduate to their own repositories.
   - [Symlink Worktree](#symlink-worktree)
 
 ## Plugins
+
+### [Agent Restart](./agent-restart)
+
+Safely restart an idle Codex or Claude agent in its launch origin pane and resume the same session.
+
+[![Agent Restart session resumed example](./agent-restart/assets/example.png)](./agent-restart)
 
 ### [Quick Agent](./quick-agent)
 
