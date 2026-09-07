@@ -39,6 +39,8 @@ test("foreground excludes the pane shell and tolerates missing process info", ()
 test("resumeCommand prefers the Herdr session ID and falls back to codex resume argv", () => {
   assert.equal(resumeCommand({ agent: "claude", agent_session: { value: "s1" } }, []), "claude --resume s1");
   assert.equal(resumeCommand({ agent: "codex", agent_session: { value: "s1" } }, []), "codex resume s1");
+  assert.equal(resumeCommand({ agent: "grok", agent_session: { value: "s1" } }, []), "grok --resume s1");
+  assert.equal(resumeCommand({ agent: "agy", agent_session: { value: "s1" } }, []), "agy --conversation=s1");
   assert.equal(resumeCommand({ agent: "codex" }, [
     { pid: 2, argv: ["node", "/bin/codex", "resume", "s2"] },
   ]), "codex resume s2");
@@ -63,10 +65,21 @@ test("restart presses ctrl+c until the agent exits, then resumes in the same pan
   ]);
 });
 
+test("restart works for grok and agy the same way as codex/claude", async () => {
+  const { calls, operations } = harness(state("grok", "idle", "s1"), [processes([])]);
+  await restartAgent("w1:p1", operations);
+  assert.deepEqual(calls, [
+    ["keys", "w1:p1", "esc"],
+    ["run", "w1:p1", "grok --resume s1"],
+    ["focus", "w1:p1"],
+  ]);
+});
+
 test("guard failures send no input", async () => {
   const cases = [
     [state(undefined, undefined, undefined), /No agent/],
     [state("gemini", "idle", "s1"), /Unsupported agent/],
+    [state("opencode", "idle", undefined), /Unsupported agent/],
     [state("codex", "working", "s1"), /not idle/],
     [state("claude", "idle", undefined), /session ID/],
   ];
