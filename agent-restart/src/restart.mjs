@@ -1,3 +1,5 @@
+import { AGENTS } from "./agents.mjs";
+
 const STOP_TIMEOUT_MS = 5_000;
 
 export function foreground(info) {
@@ -6,7 +8,7 @@ export function foreground(info) {
 }
 
 export function resumeCommand(agent, processes) {
-  // argv 폴백은 이전에 resume된 Codex용. Claude는 Herdr가 세션 ID를 항상 재보고하므로 폴백이 필요 없다.
+  // argv 폴백은 이전에 resume된 Codex용. 다른 에이전트는 Herdr가 세션 ID를 항상 재보고하므로 폴백이 필요 없다.
   const argvId = processes.flatMap((process) => {
     const argv = process.argv ?? [];
     const index = argv.indexOf("resume");
@@ -14,7 +16,7 @@ export function resumeCommand(agent, processes) {
   })[0];
   const sessionId = agent.agent_session?.value || argvId;
   if (!sessionId) throw new Error(`The ${agent.agent} agent did not report a session ID.`);
-  return agent.agent === "codex" ? `codex resume ${sessionId}` : `claude --resume ${sessionId}`;
+  return AGENTS[agent.agent].resume(sessionId);
 }
 
 export async function restartAgent(origin, operations) {
@@ -25,12 +27,13 @@ export async function restartAgent(origin, operations) {
 
   const agent = (await getAgent(origin))?.result?.agent;
   if (!agent?.agent) throw new Error("No agent is running in the launch origin pane.");
-  if (!["codex", "claude"].includes(agent.agent)) throw new Error(`Unsupported agent: ${agent.agent}.`);
+  const spec = AGENTS[agent.agent];
+  if (!spec) throw new Error(`Unsupported agent: ${agent.agent}.`);
   if (agent.agent_status !== "idle") throw new Error(`The ${agent.agent} agent is ${agent.agent_status || "in an unknown state"}, not idle.`);
 
   const command = resumeCommand(agent, foreground(await processInfo(origin)));
 
-  report(`Stopping ${agent.agent === "codex" ? "Codex" : "Claude"}…`);
+  report(`Stopping ${spec.label}…`);
   await sendKeys(origin, ["esc"]);
   const deadline = now() + STOP_TIMEOUT_MS;
   while (foreground(await processInfo(origin)).length > 0) {
