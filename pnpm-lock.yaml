@@ -8,8 +8,6 @@ importers:
 
   .: {}
 
-  agent-restart: {}
-
   quick-agent:
     dependencies:
       '@inquirer/select':

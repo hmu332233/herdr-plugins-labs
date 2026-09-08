@@ -6,22 +6,16 @@ here, and the ones that prove useful graduate to their own repositories.
 ## Table of Contents
 
 - [Plugins](#plugins)
-  - [Agent Restart](#agent-restart)
   - [Quick Agent](#quick-agent)
   - [Space Tab Count](#space-tab-count)
   - [Space Stats](#space-stats)
 - [Utilities](#utilities)
   - [Agent Usage](#agent-usage)
 - [Graduated](#graduated)
+  - [Agent Restart](#agent-restart)
   - [Symlink Worktree](#symlink-worktree)
 
 ## Plugins
-
-### [Agent Restart](./agent-restart)
-
-Safely restart an idle Codex or Claude agent in its launch origin pane and resume the same session.
-
-[![Agent Restart session resumed example](./agent-restart/assets/example.png)](./agent-restart)
 
 ### [Quick Agent](./quick-agent)
 
@@ -53,6 +47,12 @@ Shows Claude Code, Codex, and Codex2 five-hour usage in Herdr's tab bar, includi
 ## Graduated
 
 Plugins that started here and now live in their own repositories.
+
+### [Agent Restart](https://github.com/hmu332233/herdr-agent-restart)
+
+Safely restart an idle Codex, Claude, Grok, or Agy agent in its launch origin pane and resume the same session.
+
+[![Agent Restart session resumed example](https://raw.githubusercontent.com/hmu332233/herdr-agent-restart/main/assets/example.png)](https://github.com/hmu332233/herdr-agent-restart)
 
 ### [Symlink Worktree](https://github.com/hmu332233/herdr-symlink-worktree)
 

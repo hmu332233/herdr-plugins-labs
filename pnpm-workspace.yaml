@@ -1,5 +1,4 @@
 packages:
-  - agent-restart
   - quick-agent
   - space-stats
   - space-tab-count
