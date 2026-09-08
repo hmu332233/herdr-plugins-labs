@@ -10,6 +10,8 @@ here, and the ones that prove useful graduate to their own repositories.
   - [Quick Agent](#quick-agent)
   - [Space Tab Count](#space-tab-count)
   - [Space Stats](#space-stats)
+- [Utilities](#utilities)
+  - [Agent Usage](#agent-usage)
 - [Graduated](#graduated)
   - [Symlink Worktree](#symlink-worktree)
 
@@ -39,6 +41,14 @@ Exposes tab, pane, and detected-agent counts as the `$space_stats` Space sidebar
 token.
 
 [![Space Stats sidebar example](./space-stats/assets/example.png)](./space-stats)
+
+## Utilities
+
+### [Agent Usage](./agent-usage)
+
+Shows Claude Code, Codex, and Codex2 five-hour usage in Herdr's tab bar, including a meter and time until reset.
+
+[![Agent Usage right status example](./agent-usage/assets/example.png)](./agent-usage)
 
 ## Graduated
 

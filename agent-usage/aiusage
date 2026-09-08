@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""Claude Code와 Codex의 5시간/주간 사용량."""
+
+import json
+import sys
+import time
+from datetime import datetime
+from pathlib import Path
+
+HOME = Path.home()
+
+
+def claude_usage():
+    path = HOME / ".claude/plugins/claude-hud/.usage-cache.json"
+    try:
+        data = json.loads(path.read_text())["data"]
+        stamp = lambda value: datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp() if value else None
+        return data["fiveHour"], stamp(data["fiveHourResetAt"]), data["sevenDay"], stamp(data["sevenDayResetAt"])
+    except (FileNotFoundError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+        return None
+
+
+def codex_usage(directory):
+    for path in sorted((HOME / directory / "sessions").glob("*/*/*/rollout-*.jsonl"), reverse=True):
+        limits = None
+        try:
+            with path.open(errors="ignore") as lines:
+                for line in lines:
+                    if '\"rate_limits\"' in line:
+                        try:
+                            limits = json.loads(line).get("payload", {}).get("rate_limits") or limits
+                        except json.JSONDecodeError:
+                            pass
+        except OSError:
+            continue
+        if limits:
+            try:
+                return limits["primary"]["used_percent"], limits["primary"]["resets_at"], limits["secondary"]["used_percent"], limits["secondary"]["resets_at"]
+            except (KeyError, TypeError):
+                continue
+    return None
+
+
+def format_usage(name, usage, weekly):
+    if not usage:
+        return f"{name} —"
+
+    def bar(percent):
+        filled = min(10, max(1, round(percent * 10 / 100))) if percent else 0
+        return "█" * filled + "░" * (10 - filled)
+
+    def remaining(reset):
+        if reset is None:
+            return "?"
+        seconds = int(reset - time.time())
+        past = seconds < 0
+        seconds = abs(seconds)
+        if seconds >= 86400:
+            value = f"{seconds // 86400}d"
+        elif seconds >= 3600:
+            value = f"{seconds // 3600}h"
+        elif seconds >= 60:
+            value = f"{seconds // 60}m"
+        else:
+            value = "<1m"
+        return f"{value} ago" if past else value
+
+    five, five_reset, week, week_reset = usage
+    output = f"{name} {'5h ' if weekly else ''}{bar(five)} {five:.0f}%({remaining(five_reset)})"
+    return output if not weekly else f"{output} · 7d {week:.0f}%({remaining(week_reset)})"
+
+
+weekly = "--weekly" in sys.argv[1:]
+print(f"{format_usage('CL', claude_usage(), weekly)} │ {format_usage('CX', codex_usage('.codex'), weekly)} │ {format_usage('CX2', codex_usage('.codex2'), weekly)}")
