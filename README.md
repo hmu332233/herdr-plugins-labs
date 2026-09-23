@@ -9,6 +9,7 @@ here, and the ones that prove useful graduate to their own repositories.
   - [Quick Agent](#quick-agent)
   - [Space Tab Count](#space-tab-count)
   - [Space Stats](#space-stats)
+  - [Agent Pane ID](#agent-pane-id)
 - [Utilities](#utilities)
   - [Agent Usage](#agent-usage)
 - [Graduated](#graduated)
@@ -35,6 +36,12 @@ Exposes tab, pane, and detected-agent counts as the `$space_stats` Space sidebar
 token.
 
 [![Space Stats sidebar example](./space-stats/assets/example.png)](./space-stats)
+
+### [Agent Pane ID](./agent-pane-id)
+
+Shows each agent's Herdr pane and tab IDs in the Agent sidebar using the `$pane_id` and `$tab_id` tokens.
+
+[![Agent Pane ID sidebar example](./agent-pane-id/assets/example.png)](./agent-pane-id)
 
 ## Utilities
 

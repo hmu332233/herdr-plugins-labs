@@ -1,0 +1,16 @@
+id = "dev.minung.agent-pane-id"
+name = "Agent Pane ID"
+version = "0.1.0"
+min_herdr_version = "0.9.1"
+description = "Expose each agent's pane and tab IDs as Agent sidebar metadata."
+platforms = ["linux", "macos", "windows"]
+
+[[actions]]
+id = "sync"
+title = "Sync all agent pane IDs"
+contexts = ["workspace"]
+command = ["node", "src/sync.mjs"]
+
+[[events]]
+on = "pane.agent_detected"
+command = ["node", "src/sync.mjs"]

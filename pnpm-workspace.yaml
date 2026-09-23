@@ -2,3 +2,4 @@ packages:
   - quick-agent
   - space-stats
   - space-tab-count
+  - agent-pane-id
